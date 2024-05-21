@@ -13,9 +13,9 @@
     <PolicyId>B2C_1A_TrustFrameworkLocalization</PolicyId>
   </BasePolicy>
 
-  <BuildingBlocks>
+  <!-- <BuildingBlocks>
 
-  </BuildingBlocks>
+  </BuildingBlocks> -->
 
   <ClaimsProviders>
 
@@ -81,15 +81,10 @@
           <DisplayName>Session Management Provider</DisplayName>
           <Protocol Name="Proprietary"
             Handler="Web.TPEngine.SSO.SamlSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-          <!-- <Metadata>
-            <Item Key="IncludeSessionIndex">false</Item>
-            <Item Key="RegisterServiceProviders">false</Item>
-          </Metadata> -->
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
 
-    <!--<ClaimsProviders>-->
     <ClaimsProvider>
       <DisplayName>HTTP Request Technical Profiles</DisplayName>
       <TechnicalProfiles>
