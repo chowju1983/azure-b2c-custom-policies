@@ -222,7 +222,7 @@
         <DisplayName>Full User Name</DisplayName>
         <DataType>string</DataType>
         <UserHelpText/>
-      </ClaimType>
+      </ClaimType>    
 
       <ClaimType Id="entraIdGroup">
         <DisplayName>Entra Id Group</DisplayName>

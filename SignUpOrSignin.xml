@@ -22,7 +22,7 @@
 
     </Endpoints>
     <UserJourneyBehaviors>
-      <SingleSignOn Scope="Policy" />
+      <SingleSignOn Scope="Tenant" EnforceIdTokenHintOnLogout="true" />
       <SessionExpiryType>Absolute</SessionExpiryType>
       <SessionExpiryInSeconds>900</SessionExpiryInSeconds>
     </UserJourneyBehaviors>

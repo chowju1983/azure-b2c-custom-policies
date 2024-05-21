@@ -33,8 +33,10 @@
             <Item Key="WantsSignedRequests">true</Item>
             <Item Key="ResponsesSigned">false</Item>
             <Item Key="IncludeKeyInfo">true</Item>
+            <Item Key="SingleLogoutEnabled">true</Item>
             <!-- Valid List of token issuers for which the Sign-Up Page will not show up-->
-            <Item Key="ValidTokenIssuerPrefixes">https://login.microsoftonline.com/,https://sts.windows.net/</Item>
+            <!-- <Item Key="ValidTokenIssuerPrefixes">
+              https://login.microsoftonline.com/,https://sts.windows.net/</Item> -->
 
             <Item Key="PartnerEntity">
               https://login.microsoftonline.com/36da45f1-dd2c-4d1f-af13-5abe46b99921/federationmetadata/2007-06/federationmetadata.xml?appid=37285388-c2a2-4242-aae0-450d8a7a0934</Item>
@@ -45,18 +47,21 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="issuerUserId"
               PartnerClaimType="http://schemas.microsoft.com/identity/claims/objectidentifier" />
-            <OutputClaim ClaimTypeReferenceId="userGivenName" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" />
-            <OutputClaim ClaimTypeReferenceId="userSurname" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" />
+            <OutputClaim ClaimTypeReferenceId="userGivenName"
+              PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" />
+            <OutputClaim ClaimTypeReferenceId="userSurname"
+              PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" />
             <OutputClaim ClaimTypeReferenceId="userEmail"
               PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" />
             <OutputClaim ClaimTypeReferenceId="entraIdGroup"
               PartnerClaimType="http://schemas.microsoft.com/ws/2008/06/identity/claims/groups" />
             <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="Azure EntraId" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource"
-              DefaultValue="federatedIdpAuthentication" />
+              DefaultValue="federatedIdpAuthentication" AlwaysUseDefaultValue="true" />
             <OutputClaim ClaimTypeReferenceId="objectId" />
-            <OutputClaim ClaimTypeReferenceId="fullName" PartnerClaimType="http://schemas.microsoft.com/identity/claims/displayname" />
-            
+            <OutputClaim ClaimTypeReferenceId="fullName"
+              PartnerClaimType="http://schemas.microsoft.com/identity/claims/displayname" />
+
           </OutputClaims>
           <OutputClaimsTransformations>
             <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName" />
@@ -76,10 +81,10 @@
           <DisplayName>Session Management Provider</DisplayName>
           <Protocol Name="Proprietary"
             Handler="Web.TPEngine.SSO.SamlSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-          <Metadata>
+          <!-- <Metadata>
             <Item Key="IncludeSessionIndex">false</Item>
             <Item Key="RegisterServiceProviders">false</Item>
-          </Metadata>
+          </Metadata> -->
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
@@ -100,7 +105,7 @@
             <Item Key="AllowInsecureAuthInProduction">true</Item>
           </Metadata>
           <InputClaims>
-              <InputClaim ClaimTypeReferenceId="userEmail" PartnerClaimType="userEmail" />
+            <InputClaim ClaimTypeReferenceId="userEmail" PartnerClaimType="userEmail" />
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="user_groups" />
@@ -130,8 +135,8 @@
           </ClaimsExchanges>
         </OrchestrationStep>
 
-        <OrchestrationStep Order="3" Type="ClaimsExchange">
-          <ClaimsExchanges>
+                <OrchestrationStep Order="3" Type="ClaimsExchange">
+                    <ClaimsExchanges>
             <ClaimsExchange Id="RESTGetProfile"
               TechnicalProfileReferenceId="REST-EnrichTokenWithRoles" />
           </ClaimsExchanges>
