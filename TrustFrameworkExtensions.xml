@@ -30,20 +30,24 @@
           <Metadata>
             <Item Key="WantsEncryptedAssertions">false</Item>
             <Item Key="WantsSignedAssertions">false</Item>
+
+            <!--Ensures the the SAML requests are signed -->
             <Item Key="WantsSignedRequests">true</Item>
             <Item Key="ResponsesSigned">false</Item>
+
+            <!-- Include the public key as part iof the SAML signin request-->
             <Item Key="IncludeKeyInfo">true</Item>
             <Item Key="SingleLogoutEnabled">true</Item>
-            <!-- Valid List of token issuers for which the Sign-Up Page will not show up-->
-            <!-- <Item Key="ValidTokenIssuerPrefixes">
-              https://login.microsoftonline.com/,https://sts.windows.net/</Item> -->
 
+            <!-- ****************The IDP Medatata Document********************-->
             <Item Key="PartnerEntity">
               https://login.microsoftonline.com/36da45f1-dd2c-4d1f-af13-5abe46b99921/federationmetadata/2007-06/federationmetadata.xml?appid=37285388-c2a2-4242-aae0-450d8a7a0934</Item>
           </Metadata>
           <CryptographicKeys>
             <Key Id="SamlMessageSigning" StorageReferenceId="B2C_1A_SAMLSigningCert" />
           </CryptographicKeys>
+
+          <!-- Map the SAML response to local attributes-->
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="issuerUserId"
               PartnerClaimType="http://schemas.microsoft.com/identity/claims/objectidentifier" />
@@ -130,7 +134,8 @@
           </ClaimsExchanges>
         </OrchestrationStep>
 
-                <OrchestrationStep Order="3" Type="ClaimsExchange">
+        <!-- Enrich the token with an outbound API call -->
+        <OrchestrationStep Order="3" Type="ClaimsExchange">
                     <ClaimsExchanges>
             <ClaimsExchange Id="RESTGetProfile"
               TechnicalProfileReferenceId="REST-EnrichTokenWithRoles" />

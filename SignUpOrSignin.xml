@@ -29,6 +29,7 @@
     <TechnicalProfile Id="PolicyProfile">
       <DisplayName>PolicyProfile</DisplayName>
       <Protocol Name="OpenIdConnect" />
+      <!-- Map the token claims with the mapped SAML attributes-->
       <OutputClaims>
         <OutputClaim ClaimTypeReferenceId="userGivenName" />
         <OutputClaim ClaimTypeReferenceId="userSurname" />
